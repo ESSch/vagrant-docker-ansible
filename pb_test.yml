@@ -1,0 +1,18 @@
+- hosts: localhost
+  serial: 1
+  tasks:
+    - apt:
+        deb: https://download.docker.com/linux/ubuntu/dists/bionic/pool/stable/amd64/containerd.io_1.2.6-3_amd64.deb
+      become: yes
+    - apt:
+        deb: https://download.docker.com/linux/ubuntu/dists/bionic/pool/stable/amd64/docker-ce-cli_19.03.8~3-0~ubuntu-bionic_amd64.deb
+      become: yes
+    - apt:
+        deb: https://download.docker.com/linux/ubuntu/dists/bionic/pool/stable/amd64/docker-ce_19.03.8~3-0~ubuntu-bionic_amd64.deb
+      become: yes
+    - get_url:
+        url: https://github.com/docker/compose/releases/download/1.25.5/docker-compose-Linux-x86_64
+        dest: /usr/local/bin/docker-compose
+        mode: '0700'
+      become: yes
+
